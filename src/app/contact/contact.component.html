@@ -1,0 +1,112 @@
+<header>
+  <div class="navigation {{data.nav_scroll_state}}">
+    <div class="burger {{state}}">
+      <div class="burger__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="burger__cross">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <app-navigation *ngIf="!data.nav_location"></app-navigation>
+  </div>
+</header>
+
+<main>
+  <div class="sidebar {{state}}" appDrawer>
+    <div class="sidebar__menu">
+      <app-navigation *ngIf="data.nav_location"></app-navigation>
+    </div>
+    <div class="socials">
+      <app-socials></app-socials>
+    </div>
+  </div>
+
+  <div class="cp-background">
+    <img src="assets/images/cp-corner.png" alt="abstract-graphic">
+  </div>
+
+  <div class="cp-container">
+    <div class="cp-image">
+      <img src="assets/images/cp-phone.png" alt="mpbile-phone">
+    </div>
+    <div class="cp-info">
+      <div class="cp-info__title">Get in touch</div>
+      <div class="cp-info__text">
+        <p><strong>Let`s talk about your project.</strong> I really appreciate you taking the time to get in touch. Please fill in the form below or contact me via email.</p>
+      </div>
+      <form class="cp-form" name="form" (ngSubmit)="contactForm.form.valid && onSubmit()" #contactForm="ngForm" novalidate>
+        <div class="cp-form__short" [ngClass]="{ 'is-invalid': firstName.invalid && firstName.dirty }" >
+          <input class="cp-form__input" 
+                  type="text" 
+                  required 
+                  minlength="2"
+                  name="firstName" 
+                  [(ngModel)]="model.firstName" 
+                  #firstName="ngModel" 
+                  placeholder="First Name">
+          <div *ngIf="firstName.invalid && firstName.dirty" class="cp-form__error">
+            <p *ngIf="firstName.errors.required">First name is required</p>
+            <p *ngIf="firstName.errors.minlength"> First name must be at least 2 characters long.</p>
+          </div>
+        </div>
+        <div class="cp-form__short" [ngClass]="{ 'is-invalid': lastName.invalid && lastName.dirty }">
+          <input class="cp-form__input" 
+                  type="text" 
+                  required 
+                  minlength="2"
+                  name="lastName" 
+                  [(ngModel)]="model.lastName" 
+                  #lastName="ngModel" 
+                  placeholder="Last Name">
+          <div *ngIf="lastName.invalid && lastName.dirty" class="cp-form__error">
+            <p *ngIf="lastName.errors.required">Last name is required</p>
+            <p *ngIf="lastName.errors.minlength"> Last name must be at least 2 characters long.</p>
+          </div>
+        </div>
+        <div class="cp-form__long" [ngClass]="{ 'is-invalid': email.invalid && email.dirty }">
+          <input class="cp-form__input"
+                  type="email" 
+                  email 
+                  required 
+                  minlength="3"
+                  name="email" 
+                  [(ngModel)]="model.email" 
+                  #email="ngModel"
+                  placeholder="Email Address">
+          <div *ngIf="email.invalid && email.dirty" class="cp-form__error">
+            <p *ngIf="email.errors.required">Email is required</p>
+            <p *ngIf="email.errors.email">Email must be a valid email address</p>
+            <p *ngIf="email.errors.minlength"> Email must be at least 3 characters long.</p>
+          </div>
+        </div>
+        <div class="cp-form__long" [ngClass]="{ 'is-invalid': message.invalid && message.dirty }">
+          <textarea class="cp-form__textarea" 
+                    type="textarea" 
+                    placeholder="Your Message" 
+                    name="message" 
+                    minlength="10"
+                    #message="ngModel" 
+                    [(ngModel)]="model.message"
+                    required>
+          </textarea>
+          <div *ngIf="message.invalid && message.dirty" class="cp-form__error cp-form__error--message">
+            <p *ngIf="message.errors.required">Message is required</p>
+            <p *ngIf="message.errors.minlength"> Message must be at least 10 characters long.</p>
+          </div>
+        </div>
+        <button [disabled]="contactForm.invalid" class="cp-form__button" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<footer class="cp-footer">
+  <div class="cp-footer__email">Or get in touch via email:
+    <a class="cp-footer__link" href="mailto:mymailboxmd@gmail.com">mymailboxmd@gmail.com</a>
+  </div>
+</footer>

@@ -1,0 +1,56 @@
+<header>
+	<div class="navigation {{data.nav_scroll_state}}">
+		<div class="burger {{state}}">
+			<div class="burger__lines">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="burger__cross">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<app-navigation *ngIf="!data.nav_location"></app-navigation>
+	</div>
+</header>
+
+<main>
+	<div class="sidebar {{state}}" appDrawer>
+		<div class="sidebar__menu">
+			<app-navigation *ngIf="data.nav_location"></app-navigation>
+		</div>
+		<div class="socials">
+			<app-socials></app-socials>
+		</div>
+	</div>
+
+	<div class="preloader" [class.active]="preloader">
+		<img src="assets/images/preloader.gif" alt="">
+	</div>
+
+	<div class="pp-background">
+		<img src="assets/images/pp-corner.png" alt="abstract-graphic">
+	</div>
+
+	<div class="pp-container">
+		
+		<div class="pp-block" *ngFor="let item of portfolioData$ | async">
+			<div class="pp-block__info">
+				<div class="pp-block__counter">{{item.counter}}</div>
+				<div class="pp-block__title">{{item.title}}</div>
+				<div class="pp-block__text">
+					<p>{{item.text}}</p>
+				</div>
+				<div class="pp-block__link">
+					<a href="{{item.link}}" target="_blank">View page</a>
+				</div>
+			</div>
+			<div class="pp-block__image">
+				<img src="{{item.image}}" alt="sample-page">
+			</div>
+		</div>
+
+	</div>
+
+</main>

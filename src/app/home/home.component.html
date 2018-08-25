@@ -1,0 +1,50 @@
+<header>
+	<div class="navigation {{data.nav_scroll_state}}">
+		<div class="burger {{state}}">
+			<div class="burger__lines">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="burger__cross">
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+		<app-navigation *ngIf="!data.nav_location"></app-navigation>
+	</div>
+</header>
+
+<main>
+	<div class="sidebar {{state}}" appDrawer>
+		<div class="sidebar__menu">
+			<app-navigation *ngIf="data.nav_location"></app-navigation>
+		</div>
+		<div class="socials">
+			<app-socials></app-socials>
+		</div>
+	</div>
+	
+	<div class="hp-container">
+		<div class="hp-info">
+			<h1 class="hp-info__title">Explore the
+				<br> benefits of hiring a
+				<br> pro developer</h1>
+			<div class="hp-info__text">
+				<p>Web development is a mixture of art and technology, focused on capturing the audience's attention and establishing credibility. Today, the user experience is more important than ever, the user impression after visiting your page, the main question is whether the user will want to return to you or not. I'm here to offer my experience and knowledge obtained after spending countless hours of studying the industry and implementing projects. Just, click the button below and let`s get started.</p>
+			</div>
+			<button class="hp-info__button" 
+				 	libParticleEffectButton 
+					[pHidden]="hidden" 
+					pColor='#A36DF3'
+				 	(click)="data.routeDelay(); hidden=!hidden">
+				 	Lets get started
+			</button>
+		</div>
+		<div class="hp-image">
+			<div class="hp-image__text">Innovative & Effective
+				<span>it solutions</span>
+			</div>
+		</div>
+	</div>
+</main>

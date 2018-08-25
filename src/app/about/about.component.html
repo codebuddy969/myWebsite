@@ -1,0 +1,54 @@
+<header>
+  <div class="navigation {{data.nav_scroll_state}}">
+    <div class="burger {{state}}">
+      <div class="burger__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="burger__cross">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <app-navigation *ngIf="!data.nav_location"></app-navigation>
+  </div>
+</header>
+
+<main>
+  <div class="sidebar {{state}}" appDrawer>
+    <div class="sidebar__menu">
+      <app-navigation *ngIf="data.nav_location"></app-navigation>
+    </div>
+    <div class="socials">
+      <app-socials></app-socials>
+    </div>
+  </div>
+
+  <div class="ap-background-top">
+    <img src="assets/images/ap-corner.png" alt="abstract-graphic">
+  </div>
+
+  <div class="ap-container">
+    <div class="ap-info">
+      <div class="ap-info__title">Hi, my name is Vlad Secrier</div>
+      <div class="ap-info__activity">Web Designer & Developer</div>
+      <div class="ap-info__text">
+        <p>I am a professional web developer, this is my bread, I develop responsive and optimized websites. I create pages mostly on a clean layout without garbage for already existing projects. The stack of technologies that I apply is extensive, but everything is related to web development. Design in Photoshop, illustrator or adobeXD, the frontend, of course, Html, CSS, javascript, also less/sass, BEM, React with Redux, Angular or jquery. When it comes to backend development, my most favourite is Laravel framework or vanilla php. In my spare time, I like to listen to funk or jazz music or simply visit the gym. I appreciate the mutual trust and long-term cooperation, so if you`re looking for an honest, hard-working partner, hit the button below and let`s get started.</p>
+      </div>
+      <div class="ap-info__button-wrapper">
+        <button class="ap-info__button" 
+             libParticleEffectButton 
+            [pHidden]="hidden" 
+            pColor='#6C52F8'
+             (click)="data.routeDelay(); hidden=!hidden">
+             Lets get started
+        </button>
+      </div>
+    </div>
+    <div class="ap-image">
+      <img src="assets/images/ap-vlad-secrier.png" alt="vlad-secrier-photo">
+    </div>
+  </div>
+
+</main>
