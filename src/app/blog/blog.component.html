@@ -1,0 +1,89 @@
+<header>
+  <div class="navigation {{data.nav_scroll_state}}">
+    <div class="burger {{state}}">
+      <div class="burger__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="burger__cross">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <app-navigation *ngIf="!data.nav_location"></app-navigation>
+  </div>
+</header>
+
+<main>
+  <div class="sidebar {{state}}" appDrawer>
+    <div class="sidebar__menu">
+      <app-navigation *ngIf="data.nav_location"></app-navigation>
+    </div>
+    <div class="socials">
+      <app-socials></app-socials>
+    </div>
+  </div>
+
+  
+  <div class="bp-header">
+    <div class="bp-header__info">
+      <h1 class="bp-header__title">Web Developer Notes</h1>
+      <div class="bp-header__text">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi, rerum voluptas soluta enim adipisci earum, nobis iusto deserunt exercitationem dolores natus facilis a nihil molestias illum non minima saepe atque.</p>
+      </div>
+      <form class="bp-subscribe">
+        <div class="bp-subscribe__field">
+          <input class="bp-subscribe__input" type="email" required placeholder="Email address">
+        </div>
+        <button class="bp-subscribe__btn-subscribe" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="bp-header__image">
+      <img src="assets/images/bp-bck.png" alt="abstract-graphic">
+    </div>
+  </div>
+
+  <div class="bp-container">
+    <div class="bp-container__posts">
+      <div class="bp-post">
+        <div class="bp-post__image">
+          <img src="assets/images/bp_post.png" alt="blog-image">
+        </div>
+        <div class="bp-post__data">
+          <div class="bp-post__date">Posted on Jun 15, 2018</div>
+          <a class="bp-post__category" href="#">Angular Category</a>
+        </div>
+        <a class="bp-post__title" href="#">What is Angular and how to use it ?</a>
+        <div class="bp-post__text">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id unde ullam harum aspernatur ipsa repudiandae accusantium, voluptatum, doloribus quos!</p>
+        </div>
+      </div>
+      <div class="bp-post">
+        <div class="bp-post__image">
+          <img src="assets/images/bp_post.png" alt="blog-image">
+        </div>
+        <div class="bp-post__data">
+          <div class="bp-post__date">Posted on Jun 15, 2018</div>
+          <a class="bp-post__category" href="#">Angular Category</a>
+        </div>
+        <a class="bp-post__title" href="#">What is Angular and how to use it ?</a>
+        <div class="bp-post__text">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id unde ullam harum aspernatur ipsa repudiandae accusantium, voluptatum, doloribus quos!</p>
+        </div>
+      </div>
+    </div>
+    <div class="bp-container__sidebar">
+      <div class="bp-search">
+        <div class="bp-search__title">Search for posts</div>
+        <div class="bp-search__field">
+          <button class="bp-search__btn-search">
+            <img src="assets/icons/search.svg" alt="search-icon">
+          </button>
+          <input type="search" placeholder="search for...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

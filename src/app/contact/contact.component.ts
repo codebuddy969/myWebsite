@@ -23,8 +23,7 @@ export class ContactComponent implements OnInit {
   model: any = {};
 
   onSubmit() {
-    // console.log("GET WITH HEADERS");
-
+    
     this.http.post("http://laravel/store", this.model).subscribe(
       res => {
         this.submitForm.reset();

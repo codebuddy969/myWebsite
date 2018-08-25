@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { SocialsComponent } from './shared/socials/socials.component';
 import { DrawerDirective } from './shared/directives/drawer.directive';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { BlogComponent } from './blog/blog.component';
 
 export const routes: Routes = [
   { path: '', 
@@ -31,6 +32,9 @@ export const routes: Routes = [
   { path: 'portfolio', 
     component: PortfolioComponent
   },
+  { path: 'blog', 
+    component: BlogComponent
+  },
   { path: '**', redirectTo: '' }
 ];
 
@@ -43,7 +47,8 @@ export const routes: Routes = [
     ContactComponent,
     AboutComponent,
     SocialsComponent,
-    DrawerDirective
+    DrawerDirective,
+    BlogComponent
   ],
   imports: [
     BrowserModule,   
