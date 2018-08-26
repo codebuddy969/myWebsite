@@ -1,6 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { ParticleEffectButtonModule } from "angular-particle-effect-button";
+import 'prismjs/prism';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-markup';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.min';
 
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +24,7 @@ import { SocialsComponent } from './shared/socials/socials.component';
 import { DrawerDirective } from './shared/directives/drawer.directive';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { BlogComponent } from './blog/blog.component';
+import { PostComponent } from './blog/post/post.component';
 
 export const routes: Routes = [
   { path: '', 
@@ -35,6 +42,9 @@ export const routes: Routes = [
   { path: 'blog', 
     component: BlogComponent
   },
+  { path: 'blog-post', 
+    component: PostComponent
+  },
   { path: '**', redirectTo: '' }
 ];
 
@@ -48,7 +58,8 @@ export const routes: Routes = [
     AboutComponent,
     SocialsComponent,
     DrawerDirective,
-    BlogComponent
+    BlogComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,   

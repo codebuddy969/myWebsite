@@ -1,4 +1,6 @@
 @charset "utf-8";
+@import '~prismjs/themes/prism.css';
+@import '~prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 /* Variables */
 
@@ -102,7 +104,7 @@ span {
 
 main {
   padding-left: 76px;
-  @media screen and (max-width: $break-xs) {
+  @media screen and (max-width: $break-sm) {
     padding-left: 0;
   }
 }
@@ -168,11 +170,6 @@ main {
     }
   }
   @media screen and (max-width: $break-sm) {
-    &__container {
-      padding-left: 96px;
-    }
-  }
-  @media screen and (max-width: $break-xs) {
     padding: 15px;
     display: flex;
     justify-content: flex-end;
@@ -205,7 +202,7 @@ main {
   &__menu {
     display: none;
   }
-  @media screen and (max-width: $break-xs) {
+  @media screen and (max-width: $break-sm) {
     z-index: 2;
     width: 230px;
     left: -230px;
@@ -243,7 +240,7 @@ main {
       }
     }
   }
-  @media screen and (max-width: $break-xs) {
+  @media screen and (max-width: $break-sm) {
     width: 80%;
     &__container {
       display: flex;
@@ -253,7 +250,7 @@ main {
 }
 
 .burger {
-  @media screen and (max-width: $break-xs) {
+  @media screen and (max-width: $break-sm) {
     $root: &;
     width: 60px;
     height: 60px;

@@ -18,7 +18,7 @@ export class DrawerDirective {
   }
 
   checkWindowSize() {
-    const wmatch = window.matchMedia("(max-width: 575px)").matches;
+    const wmatch = window.matchMedia("(max-width: 767px)").matches;
     if (wmatch) {
       this.media_xs = true;
     } else {
@@ -56,9 +56,6 @@ export class DrawerDirective {
       } else {
         this.data.changeBurgerState("false");
       }
-
     }
-
-
   }
 }

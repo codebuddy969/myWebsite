@@ -1,0 +1,135 @@
+<header>
+  <div class="navigation {{data.nav_scroll_state}}">
+    <div class="burger {{state}}">
+      <div class="burger__lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="burger__cross">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <app-navigation *ngIf="!data.nav_location"></app-navigation>
+  </div>
+</header>
+
+<main> 
+  
+  <div class="sidebar {{state}}" appDrawer>
+    <div class="sidebar__menu">
+      <app-navigation *ngIf="data.nav_location"></app-navigation>
+    </div>
+    <div class="socials">
+      <app-socials></app-socials>
+    </div>
+  </div>
+  
+  <div class="bp-page">
+    <div class="bp-container">
+      <div class="bp-heading">
+        <div class="bp-heading__container">
+          <h1 class="bp-heading__title">How to build a website using Angular Framework</h1>
+          <div class="bp-heading__date">posted on Jun 15, 2018</div>
+        </div>
+      </div>
+      <div class="bp-image">
+        <img src="assets/images/bp-single.png" alt="angular-drawing">
+      </div>
+      <div class="bp-content">
+        <h2 class="bp-content__title">What is Angular and how to use it ?</h2>
+        <div class="bp-content__text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl. Integer vel posuere magna, quis rutrum libero.</p>
+          <br>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl. Integer vel posuere magna, quis rutrum libero.</p>
+          <br>
+  <pre class="line-numbers" data-start="0">
+      <code class="language-javascript">
+        console.log('Wow');
+        console.log('Wow');
+      </code>
+  </pre>
+          <br>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl. Integer vel posuere magna, quis rutrum libero.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl. Integer vel posuere magna, quis rutrum libero.</p>
+        </div>
+      </div>
+      <div class="bp-sidebar" *ngIf="media_xs">
+        <div class="bp-sidebar__title">More posts</div>
+        <div class="bp-sidebar__post">
+          <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+          <div class="bp-sidebar__image">
+            <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+          </div>
+          <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+          <div class="bp-sidebar__text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+          </div>
+        </div>
+        <div class="bp-sidebar__post">
+          <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+          <div class="bp-sidebar__image">
+            <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+          </div>
+          <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+          <div class="bp-sidebar__text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bp-comments">
+        <h2 class="bp-comments__title">Comment this post</h2>
+        <div class="bp-comments__container">
+          <form class="bp-comments__form">
+            <div class="bp-comments__field">
+              <input class="bp-comments__input" type="text" required placeholder="Your name">
+            </div>
+            <div class="bp-comments__field">
+              <textarea class="bp-comments__textarea" required placeholder="Share your thougths"></textarea>
+            </div>
+            <button class="bp-comments__btn-submit" type="submit">Submit</button>
+          </form>
+          <div class="bp-recent">
+            <h3 class="bp-recent__title">Recent comments</h3>
+            <div class="bp-recent__container">
+              <div class="bp-recent__block">
+                <div class="bp-recent__name">Victoria Morales</div>
+                <div class="bp-recent__date">Commented on Jun 15, 2018</div>
+                <div class="bp-recent__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl.</div>
+              </div>
+              <div class="bp-recent__block">
+                <div class="bp-recent__name">Victoria Morales</div>
+                <div class="bp-recent__date">Commented on Jun 15, 2018</div>
+                <div class="bp-recent__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus, sed consequat enim diam non neque. In orci ligula, eleifend sed mollis ac, eleifend at nisl.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bp-sidebar" *ngIf="!media_xs">
+      <div class="bp-sidebar__title">More posts</div>
+      <div class="bp-sidebar__post">
+        <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+        <div class="bp-sidebar__image">
+          <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+        </div>
+        <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+        <div class="bp-sidebar__text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+        </div>
+      </div>
+      <div class="bp-sidebar__post">
+        <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+        <div class="bp-sidebar__image">
+          <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+        </div>
+        <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+        <div class="bp-sidebar__text">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>

@@ -15,7 +15,9 @@ export class GeneralService {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   changeBurgerState(state: string) {
     this.burger_state.next(state);
@@ -37,7 +39,7 @@ export class GeneralService {
     }
 
     function move_menu() {
-      const mw = window.matchMedia("(max-width: 575px)");
+      const mw = window.matchMedia("(max-width: 767px)");
       mw.matches
         ? (rootScope.nav_location = true)
         : (rootScope.nav_location = false);

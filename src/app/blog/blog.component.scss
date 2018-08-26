@@ -1,7 +1,7 @@
 @import "styles";
 
 .sidebar {
-    left: -76px;
+    background-color: #ffebeb;
 }
 
 .#{bp-} {
@@ -17,7 +17,7 @@
         }
         &__title {
             font-size: 78px;
-            line-height: 98px;
+            line-height: 90px;
             font-weight: bold;
         }
         &__text {
@@ -35,12 +35,17 @@
         margin-top: 50px;
         &__input {
             width: 100%;
-            color: #9FA0BF;
-            font-size: 18px;
-            line-height: 22px;
             padding: 20px;
+            font-size: 18px;
+            color: #9FA0BF;
+            line-height: 22px;
+            transition: $fast-transition;
             font-family: 'Arial-light', sans-serif;
             border-bottom: 2px solid #D7DFEE;
+            &:focus {
+                padding-left: 35px;
+                transition: $fast-transition;
+            }
         }
         &__btn-subscribe {
             width: 100%;
@@ -56,8 +61,8 @@
     }
     &container {
         width: 100%;
-        max-width: 1620px;
-        margin: 0 auto;
+        max-width: 1650px;
+        margin: 30px auto 160px;
         display: flex;
         justify-content: space-between;
         &__posts {
@@ -65,19 +70,21 @@
             max-width: 1155px;
             display: flex;
             flex-wrap: wrap;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-left: -15px;
+            margin-right: -15px;
             justify-content: space-between;
         }
         &__sidebar {
             width: 100%;
-            max-width: 375px;
+            max-width: 405px;
+            padding-left: 30px;
+            padding-right: 15px;
         }
     }
     &post {
         width: 100%;
         max-width: 563px;
-        margin-bottom: 100px;
+        margin-bottom: 80px;
         padding-left: 15px;
         padding-right: 15px;
         &__image {
@@ -114,15 +121,25 @@
         }
     }
     &search {
+        &__title {
+            font-size: 26px;
+            text-transform: uppercase;
+        }
         &__field {
             height: 60px;
+            margin-top: 55px;
             padding: 13px 33px;
             position: relative;
             border-radius: 5px;
             border: 1px solid #d7dfee;
             input {
                 width: 90%;
+                transition: $fast-transition;
                 font-family: 'Arial-light', sans-serif;
+                &:focus {
+                    padding-left: 15px;
+                    transition: $fast-transition;
+                }
             }
         }
         &__btn-search {
@@ -130,6 +147,244 @@
             cursor: pointer;
             position: absolute;
             background-color: transparent;
+        }
+    }
+    &categories {
+        margin-top: 60px;
+        &__title {
+            font-size: 26px;
+            text-transform: uppercase;
+        }
+        &__post {
+            margin-top: 50px;
+            padding: 10px 30px;
+            border-left: 2px solid #FCA92C;
+        }
+        &__headline {
+            text-transform: uppercase;
+        }
+        &__text {
+            font-size: 16px;
+            margin-top: 20px;
+            line-height: 24px;
+        }
+    }
+    &pagination {
+        $root: &;
+        display: flex;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        &__button {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            cursor: pointer;
+            color: #9FA0BF;
+            border-radius: 5px;
+            border: 1px solid #D7DFEE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            transition: $fast-transition;
+            &:hover {
+                color: #212C43;
+                border: 1px solid #212C43;
+                transition: $fast-transition;
+            }
+        }
+        &__prev {
+            @extend #{$root}__button;
+            width: 125px;
+            margin-right: 40px;
+        }
+        &__next {
+            @extend #{$root}__button;
+            width: 125px;
+            margin-left: 40px;
+        }
+        &__dots {
+            color: #D7DFEE;
+            font-size: 30px;
+            margin: 0 5px;
+            padding-bottom: 6px;
+        }
+    }
+    @media screen and (max-width: $break-mx) {
+        &header {
+            padding-left: set_vw(15,120);
+            &__info {
+                max-width: set_vw(400, 685);
+                padding-top: set_vw(0, 160);
+            }
+        }
+        &container {
+            padding-left: set_vw(15,120);
+            &__posts {
+                max-width: 1130px;
+            }
+        }
+        &post {
+            max-width: 50%;
+            &__title {
+                font-size: set_vw(20,40);
+                line-height: set_vw(30,50);
+            }
+            &__date {
+                font-size: set_vw(12,16);
+            }
+            &__category {
+                font-size: set_vw(12,16);
+            }
+            &__text {
+                font-size: set_vw(14,20);
+                line-height: set_vw(18,30);
+            }
+        }
+    }
+    @media screen and (max-width: $break-xl) {
+        &header {
+            &__info {
+                padding-top: 70px;
+            }
+            &__image {
+                padding-top: 50px;
+            }
+            &__title {
+                font-size: set_vw(30, 78);
+                line-height: set_vw(40, 90);
+            }
+        }
+        &subscribe {
+            margin-top: 20px;
+        }
+    }
+    @media screen and (max-width: $break-lg) {
+        &container {
+            &__posts {
+                max-width: 60%;
+            }
+            &__sidebar {
+                max-width: 40%;
+                padding-left: 0;
+            }
+        }
+        &post {
+            max-width: 100%;
+        }
+        &pagination {
+            &__prev {
+                display: none;
+                margin-right: 15px;
+            }
+            &__next {
+                display: none;
+                margin-left: 15px;
+            }
+        }
+    }
+    @media screen and (max-width: $break-md) {
+        &header {
+            &__info {
+                max-width: 100%;
+                padding-right: 15px;
+            }
+            &__image {
+                display: none;
+            }
+        }
+        &subscribe {
+            max-width: 500px;
+        }
+        &container {
+            margin-top: 60px;
+            margin-bottom: 60px;
+        }
+        &search {
+            &__title {
+                font-size: set-vw(16, 26);
+            }
+            &__field {
+                padding: 13px 15px;
+            }
+        }
+        &categories {
+            &__title {
+                font-size: set-vw(16, 26);
+            }
+            &__headline {
+                font-size: set-vw(12, 20);
+            }
+            &__post {
+                padding: 10px 15px;
+            }
+        }
+    }
+    @media screen and (max-width: $break-sm) {
+        &header {
+            padding-left: 15px;
+            padding-right: 15px;
+            margin: 50px auto 0;
+            &__info {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+        &container {
+            padding-left: 15px;
+            padding-right: 15px;
+            flex-wrap: wrap;
+            &__posts {
+                order: 2;
+                max-width: 100%;
+                margin: 50px 0 0;   
+            }
+            &__sidebar {
+                order: 1;
+                max-width: 100%;
+                padding-right: 0;
+            }
+        }
+        &post {
+            padding-left: 0;
+            padding-right: 0;
+            &__text {
+                font-size: 20px;
+                line-height: 30px;
+            }
+        }
+        &categories {
+            display: none;
+        }
+        &pagination {
+            &__prev {
+                display: flex;
+            }
+            &__next {
+                display: flex;
+            }
+        }
+    }
+    @media screen and (max-width: $break-xs) {
+        &subscribe {
+            max-width: 100%;
+        }
+        &post {
+            margin-bottom: 50px;
+        }
+        &search {
+            &__field {
+                margin-top: 30px;
+            }
+        }
+        &pagination {
+            &__prev {
+                display: none;
+            }
+            &__next {
+                display: none;
+            }
         }
     }
 }

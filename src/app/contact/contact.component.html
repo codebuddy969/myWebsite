@@ -34,10 +34,10 @@
       <img src="assets/images/cp-phone.png" alt="mobile-phone">
     </div>
     <div class="cp-info">
-      <div class="cp-info__title">Get in touch</div>
-      <div class="cp-info__text">
+      <h1 class="cp-info__title">Get in touch</h1>
+      <h2 class="cp-info__text">
         <p><strong>Let`s talk about your project.</strong> I really appreciate you taking the time to get in touch. Please fill in the form below or contact me via email.</p>
-      </div>
+      </h2>
       <form class="cp-form" name="form" (ngSubmit)="contactForm.form.valid && onSubmit()" #contactForm="ngForm" novalidate>
         <div class="cp-form__short" [ngClass]="{ 'is-invalid': firstName.invalid && firstName.dirty }" >
           <input class="cp-form__input" 
