@@ -25,6 +25,7 @@ import { DrawerDirective } from './shared/directives/drawer.directive';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { BlogComponent } from './blog/blog.component';
 import { PostComponent } from './blog/post/post.component';
+import { PopupComponent } from './shared/popup/popup.component';
 
 export const routes: Routes = [
   { path: '', 
@@ -59,7 +60,8 @@ export const routes: Routes = [
     SocialsComponent,
     DrawerDirective,
     BlogComponent,
-    PostComponent
+    PostComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,   

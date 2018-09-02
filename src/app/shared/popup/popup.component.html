@@ -1,0 +1,9 @@
+<div class="modal" [class.active]="action_value" (click)="closeModal($event)">
+  <div class="modal__window">
+      <div class="modal__headline">{{popup_message}}</div>
+      <div class="modal__cross" (click)="closeModal($event)">
+          <div class="modal__cross-line"></div>
+          <div class="modal__cross-line"></div>
+      </div>
+  </div>
+</div>

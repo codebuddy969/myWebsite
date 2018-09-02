@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import {
@@ -33,7 +33,9 @@ import {
     ])
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  public isIE: boolean = false;
 
   constructor(private router: Router) {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
@@ -41,10 +43,28 @@ export class AppComponent {
     };
   }
 
+  ngOnInit() {
+      this.detectIE();
+  }
+
   animationStarted() {
       var interval = setInterval(function(){ 
         window.pageYOffset <= 40 ? clearInterval(interval) : window.scrollBy(0,-40);
        }, 1);
-  } 
+  }
+    
+  detectIE() {
+      let ua = window.navigator.userAgent;
+
+      let msie = ua.indexOf('MSIE ');
+      let trident = ua.indexOf('Trident/');
+      let edge = ua.indexOf('Edge/');
+      
+      if (msie > 0 || trident > 0 || edge > 0) {
+          this.isIE = true;
+      }
+      
+      return false; // other browsers
+  }
 
 }

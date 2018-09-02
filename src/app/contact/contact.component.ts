@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { GeneralService } from "../shared/services/general.service";
+import { PopupService } from "../shared/services/popup.service";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
@@ -8,11 +9,19 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./contact.component.scss"]
 })
 export class ContactComponent implements OnInit {
+
   @ViewChild("contactForm")
+
   public submitForm: any;
   public state: string;
+  public model: Object = {};
+  public action: boolean = false;
 
-  constructor(public data: GeneralService, private http: HttpClient) {}
+  constructor(
+    public data: GeneralService, 
+    public popup: PopupService, 
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     this.data.resizeMenuLocation();
@@ -20,15 +29,25 @@ export class ContactComponent implements OnInit {
     this.data.current_state.subscribe(state => this.state = state);
   }
 
-  model: any = {};
+  checkModal($event) {
+    $event === false ? this.action = false : this.action = true;
+  }
 
   onSubmit() {
-    
-    this.http.post("http://laravel/store", this.model).subscribe(
-      res => {
-        this.submitForm.reset();
-      },
-      msg => console.error(`Error: ${msg.status} ${msg.statusText}`)
+   
+    this.http.post("http://askcoder.tech/external/store", this.model).subscribe(
+      response => {
+        if(response.errors) {
+          this.action = true;
+          let message = response.errors.toString().split(",").join("\n");
+          this.popup.popupMessage(message);
+        } else {
+          this.submitForm.reset();
+          this.action = true;
+          let message = response.success.toString().split(",").join("\n");
+          this.popup.popupMessage(message);
+        }
+      }
     );
   }
 }
