@@ -37,14 +37,14 @@ export class ContactComponent implements OnInit {
    
     this.http.post("http://askcoder.tech/external/store", this.model).subscribe(
       response => {
-        if(response.errors) {
+        if(Object.keys(response)[0] === 'errors') {
           this.action = true;
-          let message = response.errors.toString().split(",").join("\n");
+          let message = Object.values(response)[0].toString().split(",").join("\n");
           this.popup.popupMessage(message);
         } else {
           this.submitForm.reset();
           this.action = true;
-          let message = response.success.toString().split(",").join("\n");
+          let message = Object.values(response)[0].toString().split(",").join("\n");
           this.popup.popupMessage(message);
         }
       }
