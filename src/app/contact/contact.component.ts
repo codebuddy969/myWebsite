@@ -35,17 +35,17 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
    
-    this.http.post("http://askcoder.tech/external/store", this.model).subscribe(
+    this.http.post("http://laravel/external/store", this.model).subscribe(
       response => {
         if(Object.keys(response)[0] === 'errors') {
           this.action = true;
           let message = Object.values(response)[0].toString().split(",").join("\n");
           this.popup.popupMessage(message);
         } else {
-          this.submitForm.reset();
           this.action = true;
           let message = Object.values(response)[0].toString().split(",").join("\n");
           this.popup.popupMessage(message);
+          this.submitForm.reset();
         }
       }
     );

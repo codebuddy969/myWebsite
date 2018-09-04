@@ -31,12 +31,27 @@
       <div class="bp-header__text">
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi, rerum voluptas soluta enim adipisci earum, nobis iusto deserunt exercitationem dolores natus facilis a nihil molestias illum non minima saepe atque.</p>
       </div>
-      <form class="bp-subscribe">
-        <div class="bp-subscribe__field">
-          <input class="bp-subscribe__input" type="email" required placeholder="Email address">
+
+      <form class="bp-subscribe" (ngSubmit)="subscribeForm.form.valid && onSubmit()" #subscribeForm="ngForm" novalidate>
+        <div class="bp-subscribe__field" [ngClass]="{ 'is-invalid': email.invalid && email.dirty }">
+          <input class="bp-subscribe__input" 
+                 type="email"
+                 email
+                 required 
+                 minlength="3"
+                 name="email"
+                 [(ngModel)]="model.email" 
+                 #email="ngModel"
+                 placeholder="Email address">
+            <div *ngIf="email.invalid && email.dirty" class="bp-subscribe__error">
+              <p *ngIf="email.errors.required">Email is required</p>
+              <p *ngIf="email.errors.email">Email must be a valid email address</p>
+              <p *ngIf="email.errors.minlength"> Email must be at least 3 characters long.</p>
+            </div>
         </div>
-        <button class="bp-subscribe__btn-subscribe" type="submit">Subscribe</button>
+        <button [disabled]="subscribeForm.invalid" class="bp-subscribe__btn-subscribe" type="submit">Subscribe</button>
       </form>
+
     </div>
     <div class="bp-header__image">
       <img src="assets/images/bp-bck.png" alt="abstract-graphic">
@@ -45,32 +60,21 @@
 
   <div class="bp-container">
     <div class="bp-container__posts">
-      <div class="bp-post">
+
+      <div class="bp-post" *ngFor="let post of postsData$ | async">
         <div class="bp-post__image">
-          <img src="assets/images/bp_post.png" alt="blog-image">
+          <img src={{post.image_small}} alt="blog-image">
         </div>
         <div class="bp-post__data">
-          <div class="bp-post__date">Posted on Jun 15, 2018</div>
-          <a class="bp-post__category" href="#">Angular Category</a>
+          <div class="bp-post__date">Posted on {{post.posted_on | date}}</div>
+          <a class="bp-post__category" href={{post.category_link}} target="_blank">{{post.category}} Category</a>
         </div>
-        <a class="bp-post__title" href="#">What is Angular and how to use it ?</a>
+        <a class="bp-post__title" href={{post.title_link}} target="_blank">{{post.title}}</a>
         <div class="bp-post__text">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id unde ullam harum aspernatur ipsa repudiandae accusantium, voluptatum, doloribus quos!</p>
+          <p>{{post.short_content}}</p>
         </div>
       </div>
-      <div class="bp-post">
-        <div class="bp-post__image">
-          <img src="assets/images/bp_post.png" alt="blog-image">
-        </div>
-        <div class="bp-post__data">
-          <div class="bp-post__date">Posted on Jun 15, 2018</div>
-          <a class="bp-post__category" href="#">Angular Category</a>
-        </div>
-        <a class="bp-post__title" href="#">What is Angular and how to use it ?</a>
-        <div class="bp-post__text" >
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas id unde ullam harum aspernatur ipsa repudiandae accusantium, voluptatum, doloribus quos!</p>
-        </div>
-      </div>
+
       <ul class="bp-pagination">
         <li class="bp-pagination__prev">Previous</li>
         <li class="bp-pagination__button">1</li>
@@ -84,12 +88,20 @@
     <div class="bp-container__sidebar">
       <div class="bp-search">
         <div class="bp-search__title">Search for posts</div>
-        <div class="bp-search__field">
-          <button class="bp-search__btn-search">
+
+        <form class="bp-search__field" (ngSubmit)="searchForm.form.valid && onSearch()" #searchForm="ngForm" novalidate>
+          <input type="search" 
+                 required
+                 minlength="3"
+                 placeholder="search for..."
+                 name="search"
+                 [(ngModel)]="search_model.search" 
+                 #search="ngModel">
+          <button class="bp-search__btn-search" type="submit" [disabled]="searchForm.invalid">
             <img src="assets/icons/search.svg" alt="search-icon">
           </button>
-          <input type="search" placeholder="search for...">
-        </div>
+        </form>
+
       </div>
       <div class="bp-categories">
         <div class="bp-categories__title">Posts by Category</div>
@@ -110,3 +122,5 @@
   </div>
 
 </main>
+
+<app-popup [action_value]='action' (returnEvent)=checkModal($event)></app-popup>

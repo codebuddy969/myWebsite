@@ -41,7 +41,6 @@
             line-height: 22px;
             transition: $fast-transition;
             font-family: 'Arial-light', sans-serif;
-            border-bottom: 2px solid #D7DFEE;
             &:focus {
                 padding-left: 35px;
                 transition: $fast-transition;
@@ -52,11 +51,32 @@
             height: 60px;
             cursor: pointer;
             font-size: 18px;
-            margin-top: 40px;
+            margin-top: 60px;
             color: #ffffff;
             border-radius: 30px;
             text-transform: uppercase;
             background-color: #FCA92C;
+        }
+        &__field {
+            position: relative;
+            border-bottom: 2px solid #D7DFEE;
+            &.is-invalid {
+                transition: $slow-transition;
+                border-bottom: 2px solid #fc2c2c;
+            }
+        }
+        &__error {
+            color: #fc2c2c;
+            top: 70px;
+            font-size: 14px;
+            position: absolute;
+            line-height: 22px;
+            &--message {
+                top: 158px;
+            }
+            p {
+                display: block;
+            }
         }
     }
     &container {
@@ -126,7 +146,6 @@
             text-transform: uppercase;
         }
         &__field {
-            height: 60px;
             margin-top: 55px;
             padding: 13px 33px;
             position: relative;
