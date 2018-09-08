@@ -26,7 +26,7 @@ export class BlogComponent implements OnInit {
   constructor( 
     public data: GeneralService, 
     public popup: PopupService,  
-    private http: HttpClient 
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
@@ -42,17 +42,11 @@ export class BlogComponent implements OnInit {
   }
 
   getPosts() {
-    this.postsData$ = this.http.get('http://laravel/external/posts')
-    this.postsData$.subscribe(data => {
-      console.log(data);
-    });
+    this.postsData$ = this.http.get('http://laravel/external/posts');
   }
 
   onSearch() {
-    this.http.post("http://laravel/external/search-posts", this.search_model).subscribe(
-      response => {
-        console.log(response);
-      });
+    this.postsData$ = this.http.post("http://laravel/external/search-posts", this.search_model);
   }
 
   onSubmit() {

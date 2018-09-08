@@ -15,7 +15,7 @@
 	</div>
 </header>
 
-<main>
+<main *ngIf="!post_exist">
 	<div class="sidebar {{state}}" appDrawer>
 		<div class="sidebar__menu">
 			<app-navigation *ngIf="data.nav_location"></app-navigation>
@@ -24,7 +24,7 @@
 			<app-socials></app-socials>
 		</div>
 	</div>
-	
+
 	<div class="hp-container">
 		<div class="hp-info">
 			<h1 class="hp-info__title">Explore the

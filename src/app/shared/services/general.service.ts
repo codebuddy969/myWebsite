@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,21 @@ export class GeneralService {
   public nav_location: boolean;
   public nav_scroll_state: string;
 
+  private postsData$: any;
+  private postComments$: any;
+
   burger_state = new BehaviorSubject<string>('false');
   current_state = this.burger_state.asObservable();
 
-  constructor(private router: Router) { }
+  post_state = new BehaviorSubject([]);
+  current_post = this.post_state.asObservable();
 
-  ngOnInit() {
+  comments_state = new BehaviorSubject([]);
+  current_comments = this.comments_state.asObservable();
 
-  }
+  constructor(private router: Router, private http: HttpClient) { }
+
+  ngOnInit() { }
 
   changeBurgerState(state: string) {
     this.burger_state.next(state);
@@ -65,6 +73,24 @@ export class GeneralService {
     setTimeout(function(){
       rootScope.router.navigateByUrl('/contact');
     }, 1500);
+  }
+
+  getUniquePost($index, $title) {
+
+    $index = $index + 1;
+    $title = $title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
+
+    this.postsData$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index});
+    this.postsData$.subscribe(response => {
+      this.post_state.next(response);
+    });
+
+    this.postComments$ = this.http.post("http://laravel/external/get-comments", {'post_id': $index});
+    this.postComments$.subscribe(response => {
+      this.comments_state.next(response);
+      this.router.navigateByUrl(`blog/${$title}/?post=${$index}`);
+    });
+    
   }
 
 }

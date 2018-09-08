@@ -2,11 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { ParticleEffectButtonModule } from "angular-particle-effect-button";
-import 'prismjs/prism';
-import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-scss';
-import 'prismjs/components/prism-markup';
-import 'prismjs/plugins/line-numbers/prism-line-numbers.min';
 
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +22,14 @@ import { BlogComponent } from './blog/blog.component';
 import { PostComponent } from './blog/post/post.component';
 import { PopupComponent } from './shared/popup/popup.component';
 
+import { HighlightService } from './shared/services/highlight.service';
+
+// import 'prismjs/prism';
+// import 'prismjs/components/prism-typescript';
+// import 'prismjs/components/prism-scss';
+// import 'prismjs/components/prism-markup';
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.min';
+
 export const routes: Routes = [
   { path: '', 
     component: HomeComponent, 
@@ -43,7 +46,7 @@ export const routes: Routes = [
   { path: 'blog', 
     component: BlogComponent
   },
-  { path: 'blog-post', 
+  { path: 'blog/:post/:id', 
     component: PostComponent
   },
   { path: '**', redirectTo: '' }
@@ -86,7 +89,8 @@ export const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    HighlightService
   ],
   bootstrap: [AppComponent]
 })

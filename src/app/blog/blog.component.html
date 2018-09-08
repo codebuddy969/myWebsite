@@ -61,7 +61,7 @@
   <div class="bp-container">
     <div class="bp-container__posts">
 
-      <div class="bp-post" *ngFor="let post of postsData$ | async">
+      <div class="bp-post" *ngFor="let post of postsData$ | async; index as i;">
         <div class="bp-post__image">
           <img src={{post.image_small}} alt="blog-image">
         </div>
@@ -69,7 +69,9 @@
           <div class="bp-post__date">Posted on {{post.posted_on | date}}</div>
           <a class="bp-post__category" href={{post.category_link}} target="_blank">{{post.category}} Category</a>
         </div>
-        <a class="bp-post__title" href={{post.title_link}} target="_blank">{{post.title}}</a>
+        <h2 class="bp-post__title" (click)="data.getUniquePost(i, post.title)">
+          {{post.title}}
+        </h2>
         <div class="bp-post__text">
           <p>{{post.short_content}}</p>
         </div>
