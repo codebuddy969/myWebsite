@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
 
         this.post_exist = true;
         let $index = params['post'];
-        let $category = params['cat']
-
-        this.post_data$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index,'category': $category});
+        let $category = params['cat'];
+        
+        this.post_data$ = this.http.post(`${this.data.SITE_PATH}/external/unique-post`, {'post_id': $index,'category': $category});
         this.post_data$.subscribe(response => {
           this.data.post_state.next(response.post);
           this.data.comments_state.next(response.comments);  

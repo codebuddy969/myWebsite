@@ -42,20 +42,20 @@ export class BlogComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.postsData$ = this.http.get('http://laravel/external/posts');
+    this.postsData$ = this.http.get(`${this.data.SITE_PATH}/external/posts`);
   }
 
   onSearch(): void {
-    this.postsData$ = this.http.post("http://laravel/external/search-posts", this.search_model);
+    this.postsData$ = this.http.post(`${this.data.SITE_PATH}/external/search-posts`, this.search_model);
   }
 
   filterByCategory($category): void {
     let category = {search: $category};
-    this.postsData$ = this.http.post("http://laravel/external/search-posts", category);
+    this.postsData$ = this.http.post(`${this.data.SITE_PATH}/external/search-posts`, category);
   }
 
   onSubmit(): void {
-    this.http.post("http://laravel/external/subscribe", this.model).subscribe(
+    this.http.post(`${this.data.SITE_PATH}/external/subscribe`, this.model).subscribe(
       response => {
         if(Object.keys(response)[0] === 'errors') {
           this.action = true;

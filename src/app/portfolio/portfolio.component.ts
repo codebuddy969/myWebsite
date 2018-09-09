@@ -20,7 +20,7 @@ export class PortfolioComponent implements OnInit {
     this.data.navigationStateOnScroll();
     this.renderer.addClass(document.body, 'body-portfolio');
 
-    this.portfolioData$ = this.http.get('http://askcoder.tech/external/portfolio');
+    this.portfolioData$ = this.http.get( `${this.data.SITE_PATH}/external/portfolio` );
     this.portfolioData$.subscribe(() => {
       this.preloader = false;
     });

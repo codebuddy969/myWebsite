@@ -35,7 +35,7 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
    
-    this.http.post("http://askcoder.tech/external/store", this.model).subscribe(
+    this.http.post(`${this.data.SITE_PATH}/external/store`, this.model).subscribe(
       response => {
         if(Object.keys(response)[0] === 'errors') {
           this.action = true;

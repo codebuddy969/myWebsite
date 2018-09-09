@@ -8,6 +8,8 @@ import { HttpClient } from "@angular/common/http";
 })
 export class GeneralService {
 
+  public SITE_PATH = 'http://askcoder.tech';
+
   public nav_location: boolean;
   public nav_scroll_state: string;
 
@@ -80,13 +82,11 @@ export class GeneralService {
   }
 
   getUniquePost($index, $title, $category) {
-
-    console.log($index, $title, $category);
-
+    
     $index = $index + 1;
     $title = $title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
 
-    this.postsData$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index, 'category': $category});
+    this.postsData$ = this.http.post(`${this.SITE_PATH}/external/unique-post`, {'post_id': $index, 'category': $category});
     this.postsData$.subscribe(response => {
       this.post_state.next(response.post);
       this.comments_state.next(response.comments); 

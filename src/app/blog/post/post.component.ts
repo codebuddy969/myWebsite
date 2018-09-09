@@ -77,7 +77,7 @@ export class PostComponent implements OnInit, AfterViewChecked {
 
     const new_comment = Object.assign({ approved: 0, post_id: this.postsData$[0].id}, this.send_comment);
 
-    this.http.post("http://laravel/external/store-comments", new_comment).subscribe(
+    this.http.post(`${this.data.SITE_PATH}/external/store-comments`, new_comment).subscribe(
       response => {
         if(Object.keys(response)[0] === 'errors') {
           this.action = true;
