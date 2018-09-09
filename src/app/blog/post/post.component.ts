@@ -1,6 +1,7 @@
-import { Component, OnInit, HostListener, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, HostListener, AfterViewChecked, ViewChild } from '@angular/core';
 import { GeneralService } from "../../shared/services/general.service";
 import { HighlightService } from '../../shared/services/highlight.service';
+import { PopupService } from "../../shared/services/popup.service";
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from "@angular/common/http";
 
@@ -11,11 +12,17 @@ import { HttpClient } from "@angular/common/http";
 })
 export class PostComponent implements OnInit, AfterViewChecked {
 
+  @ViewChild("commentsForm")
+  public commentsForm: any;
+
   public state: string;
   public media_xs: boolean = false;
   public highlighted: boolean = false;
   public current_post: Array<Object> = [];
   public post_comments: Array<Object> = [];
+  public send_comment: Object = {};
+
+  public action: boolean = false;
 
   public postsData$: any;
   public commentsData$: any;
@@ -23,8 +30,7 @@ export class PostComponent implements OnInit, AfterViewChecked {
   constructor( 
     public data: GeneralService, 
     private http: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute,
+    public popup: PopupService,
     private highlightService: HighlightService ) { }
 
   ngOnInit() {
@@ -62,6 +68,30 @@ export class PostComponent implements OnInit, AfterViewChecked {
   checkWindowSize () {
       const mw = window.matchMedia("(max-width: 767px)");
       mw.matches ? (this.media_xs = true) : (this.media_xs = false);
+  }
+
+  checkModal($event) {
+    $event === false ? this.action = false : this.action = true;
+  }
+
+  onSubmit() {
+
+    const new_comment = Object.assign({ approved: 0, post_id: this.postsData$[0].id}, this.send_comment);
+
+    this.http.post("http://laravel/external/store-comments", new_comment).subscribe(
+      response => {
+        if(Object.keys(response)[0] === 'errors') {
+          this.action = true;
+          let message = Object.values(response)[0].toString().split(",").join("\n");
+          this.popup.popupMessage(message);
+        } else {
+          this.action = true;
+          let message = Object.values(response)[0].toString().split(",").join("\n");
+          this.popup.popupMessage(message);
+          this.commentsForm.reset();
+        }
+      }
+    );
   }
 
 }

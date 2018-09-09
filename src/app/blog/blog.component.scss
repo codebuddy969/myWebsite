@@ -128,13 +128,16 @@
             color: #9FA0BF;
         }
         &__category {
+            cursor: pointer;
             font-size: 16px;
             color: #9FA0BF;
+            background-color: transparent;
         }
         &__title {
             font-size: 40px;
             line-height: 50px;
-            display: block;
+            display: inline-block;
+            cursor: pointer;
         }
         &__text {
             margin-top: 20px;

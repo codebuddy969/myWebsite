@@ -69,18 +69,46 @@
           </div>
         </div>
       </div>
+
       <div class="bp-comments">
         <h2 class="bp-comments__title">Comment this post</h2>
         <div class="bp-comments__container">
-          <form class="bp-comments__form">
+
+          <form class="bp-comments__form" (ngSubmit)="commentsForm.form.valid && onSubmit()" #commentsForm="ngForm" novalidate>
             <div class="bp-comments__field">
-              <input class="bp-comments__input" type="text" required placeholder="Your name">
+              <input 
+                class="bp-comments__input" 
+                type="text" 
+                required 
+                name="name"
+                minlength="2"
+                [(ngModel)]="send_comment.name" 
+                #name="ngModel"
+                placeholder="Your name">
+              <div *ngIf="name.invalid && name.dirty" class="bp-comments__error">
+                <p *ngIf="name.errors.required">Name is required</p>
+                <p *ngIf="name.errors.minlength"> Name must be at least 2 characters long.</p>
+              </div>
             </div>
             <div class="bp-comments__field">
-              <textarea class="bp-comments__textarea" required placeholder="Share your thougths"></textarea>
+              <textarea 
+                class="bp-comments__textarea" 
+                placeholder="Share your thougths"
+                required 
+                minlength="10"
+                name="message"
+                #message="ngModel" 
+                [(ngModel)]="send_comment.message">
+              </textarea>
+            <div *ngIf="message.invalid && message.dirty" class="bp-comments__error">
+              <p *ngIf="message.errors.required">Message is required</p>
+              <p *ngIf="message.errors.minlength"> Message must be at least 10 characters long.</p>
             </div>
-            <button class="bp-comments__btn-submit" type="submit">Submit</button>
+
+            </div>
+            <button [disabled]="commentsForm.invalid" class="bp-comments__btn-submit" type="submit">Submit</button>
           </form>
+
           <div class="bp-recent">
             <h3 class="bp-recent__title">Recent comments</h3>
             <div class="bp-recent__container">
@@ -121,3 +149,5 @@
   </div>
 
 </main>
+
+<app-popup [action_value]='action' (returnEvent)=checkModal($event)></app-popup>

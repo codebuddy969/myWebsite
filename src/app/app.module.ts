@@ -24,12 +24,6 @@ import { PopupComponent } from './shared/popup/popup.component';
 
 import { HighlightService } from './shared/services/highlight.service';
 
-// import 'prismjs/prism';
-// import 'prismjs/components/prism-typescript';
-// import 'prismjs/components/prism-scss';
-// import 'prismjs/components/prism-markup';
-// import 'prismjs/plugins/line-numbers/prism-line-numbers.min';
-
 export const routes: Routes = [
   { path: '', 
     component: HomeComponent, 

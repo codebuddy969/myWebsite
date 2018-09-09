@@ -67,7 +67,7 @@
         </div>
         <div class="bp-post__data">
           <div class="bp-post__date">Posted on {{post.posted_on | date}}</div>
-          <a class="bp-post__category" href={{post.category_link}} target="_blank">{{post.category}} Category</a>
+          <button class="bp-post__category" (click)="filterByCategory(post.category)">{{post.category}} Category</button>
         </div>
         <h2 class="bp-post__title" (click)="data.getUniquePost(i, post.title)">
           {{post.title}}

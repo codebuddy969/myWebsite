@@ -19,8 +19,8 @@ export class BlogComponent implements OnInit {
   postsData$: any;
 
   public state: string;
-  public model: Object = {};
-  public search_model: Object = {};
+  private model: Object = {};
+  private search_model: Object = {};
   public action: boolean = false;
 
   constructor( 
@@ -29,7 +29,7 @@ export class BlogComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.data.resizeMenuLocation();
     this.data.navigationStateOnScroll();
     this.data.current_state.subscribe(state => this.state = state);
@@ -37,19 +37,24 @@ export class BlogComponent implements OnInit {
     this.getPosts();
   }
 
-  checkModal($event) {
+  checkModal($event: any): void {
     $event === false ? this.action = false : this.action = true;
   }
 
-  getPosts() {
+  getPosts(): void {
     this.postsData$ = this.http.get('http://laravel/external/posts');
   }
 
-  onSearch() {
+  onSearch(): void {
     this.postsData$ = this.http.post("http://laravel/external/search-posts", this.search_model);
   }
 
-  onSubmit() {
+  filterByCategory($category): void {
+    let category = {search: $category};
+    this.postsData$ = this.http.post("http://laravel/external/search-posts", category);
+  }
+
+  onSubmit(): void {
     this.http.post("http://laravel/external/subscribe", this.model).subscribe(
       response => {
         if(Object.keys(response)[0] === 'errors') {
