@@ -20,12 +20,11 @@ export class GeneralService {
   post_state = new BehaviorSubject([]);
   current_post = this.post_state.asObservable();
 
+
   comments_state = new BehaviorSubject([]);
   current_comments = this.comments_state.asObservable();
 
   constructor(private router: Router, private http: HttpClient) { }
-
-  ngOnInit() { }
 
   changeBurgerState(state: string) {
     this.burger_state.next(state);
@@ -76,21 +75,15 @@ export class GeneralService {
   }
 
   getUniquePost($index, $title) {
-
+    
     $index = $index + 1;
     $title = $title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
 
     this.postsData$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index});
     this.postsData$.subscribe(response => {
-      this.post_state.next(response);
-    });
-
-    this.postComments$ = this.http.post("http://laravel/external/get-comments", {'post_id': $index});
-    this.postComments$.subscribe(response => {
-      this.comments_state.next(response);
+      this.post_state.next(response.post);
+      this.comments_state.next(response.comments); 
       this.router.navigateByUrl(`blog/${$title}/?post=${$index}`);
-    });
-    
+    }); 
   }
-
 }

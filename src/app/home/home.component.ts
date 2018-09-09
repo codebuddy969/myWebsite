@@ -39,16 +39,12 @@ export class HomeComponent implements OnInit {
 
         this.post_data$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index});
         this.post_data$.subscribe(response => {
-          this.data.post_state.next(response);
-          let $title = response[0].title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
+          this.data.post_state.next(response.post);
+          this.data.comments_state.next(response.comments);   
+          
+          let $title =  response.post[0].title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
           this.router.navigateByUrl(`blog/${$title}/?post=${$index}`);
         });
-
-        this.comments_data$ = this.http.post("http://laravel/external/get-comments", {'post_id': $index});
-        this.comments_data$.subscribe(response => {
-          this.data.comments_state.next(response);
-        });
-
       }
     });
   }

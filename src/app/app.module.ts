@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ParticleEffectButtonModule } from "angular-particle-effect-button";
-
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,8 +19,10 @@ import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { BlogComponent } from './blog/blog.component';
 import { PostComponent } from './blog/post/post.component';
 import { PopupComponent } from './shared/popup/popup.component';
-
 import { HighlightService } from './shared/services/highlight.service';
+
+import { ParticleEffectButtonModule } from "angular-particle-effect-button";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 export const routes: Routes = [
   { path: '', 
@@ -75,7 +75,8 @@ export const routes: Routes = [
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-CSRF-TOKEN'
-    })
+    }),
+    NgxPaginationModule
   ],
   exports: [ RouterModule ],
   providers: [

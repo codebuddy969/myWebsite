@@ -193,14 +193,18 @@
     }
     &pagination {
         $root: &;
+        width: 100%;
         display: flex;
         margin: 0 auto;
         flex-wrap: wrap;
         align-items: flex-end;
-        &__button {
+        justify-content: center;
+        /deep/ li {
+            margin: 5px;
+        }
+        /deep/ a {
             width: 40px;
             height: 40px;
-            margin: 5px;
             cursor: pointer;
             color: #9FA0BF;
             border-radius: 5px;
@@ -214,23 +218,88 @@
                 color: #212C43;
                 border: 1px solid #212C43;
                 transition: $fast-transition;
+                background-color: transparent;
             }
         }
-        &__prev {
-            @extend #{$root}__button;
+        /deep/ .pagination-next a {
             width: 125px;
-            margin-right: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #9FA0BF;
+            border-radius: 5px;
+            border: 1px solid #D7DFEE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            transition: $fast-transition;
+            &:after {
+                display: none;
+            }
+            &:hover {
+                color: #212C43;
+                border: 1px solid #212C43;
+                transition: $fast-transition;
+                background-color: transparent;
+            }
         }
-        &__next {
-            @extend #{$root}__button;
+        /deep/ .pagination-previous a {
             width: 125px;
-            margin-left: 40px;
+            height: 40px;   
+            cursor: pointer;
+            color: #9FA0BF;
+            border-radius: 5px;
+            border: 1px solid #D7DFEE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            transition: $fast-transition;
+            &:before {
+                display: none;
+            }
+            &:hover {
+                color: #212C43;
+                border: 1px solid #212C43;
+                transition: $fast-transition;
+                background-color: transparent;
+            }
         }
-        &__dots {
-            color: #D7DFEE;
-            font-size: 30px;
-            margin: 0 5px;
-            padding-bottom: 6px;
+        /deep/ .disabled {
+            width: 125px;
+            height: 40px;
+            cursor: pointer;
+            color: #9FA0BF;
+            border-radius: 5px;
+            border: 1px solid #D7DFEE;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            transition: $fast-transition;
+            &:hover {
+                color: #212C43;
+                border: 1px solid #212C43;
+                transition: $fast-transition;
+                background-color: transparent;
+            }
+        }
+        /deep/ .ngx-pagination .pagination-previous.disabled {
+            &:before {
+                display: none;
+            }
+        }
+        /deep/ .ngx-pagination .pagination-next.disabled {
+            &:after {
+                display: none;
+            }
+        }
+        /deep/ .current {
+            color: #212C43;
+            border-radius: 5px;
+            border: 1px solid #212C43;
+            transition: $fast-transition;
+            background-color: transparent;
         }
     }
     @media screen and (max-width: $break-mx) {
@@ -296,13 +365,11 @@
             max-width: 100%;
         }
         &pagination {
-            &__prev {
+            /deep/ .pagination-previous {
                 display: none;
-                margin-right: 15px;
             }
-            &__next {
+            /deep/ .pagination-next {
                 display: none;
-                margin-left: 15px;
             }
         }
     }
@@ -380,11 +447,11 @@
             display: none;
         }
         &pagination {
-            &__prev {
-                display: flex;
+            /deep/ .pagination-previous {
+                display: inline-flex;
             }
-            &__next {
-                display: flex;
+            /deep/ .pagination-next {
+                display: inline-flex;
             }
         }
     }
@@ -401,10 +468,10 @@
             }
         }
         &pagination {
-            &__prev {
+            /deep/ .pagination-previous {
                 display: none;
             }
-            &__next {
+            /deep/ .pagination-next {
                 display: none;
             }
         }
