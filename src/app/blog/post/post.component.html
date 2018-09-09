@@ -31,43 +31,35 @@
       <div>
       <div class="bp-heading">
         <div class="bp-heading__container">
-          <h1 class="bp-heading__title">{{postsData$[0].title}}</h1>
-          <div class="bp-heading__date">posted on {{postsData$[0].posted_on | date}}</div>
+          <h1 class="bp-heading__title">{{current_post[0].title}}</h1>
+          <div class="bp-heading__date">posted on {{current_post[0].posted_on | date}}</div>
         </div>
       </div>
       <div class="bp-image">
-        <img src="assets/images/bp-single.png" alt="angular-drawing">
+        <img src={{current_post[0].image_large}} alt="angular-drawing">
       </div>
       <div class="bp-content">
-        <h2 class="bp-content__title">{{postsData$[0].small_title}}</h2>
+        <h2 class="bp-content__title">{{current_post[0].small_title}}</h2>
         <div class="bp-content__text">
-          <div [innerHTML]="postsData$[0].content"></div>
+          <div [innerHTML]="current_post[0].content"></div>
         </div>
       </div>
     </div>
 
       <div class="bp-sidebar" *ngIf="media_xs">
         <div class="bp-sidebar__title">More posts</div>
-        <div class="bp-sidebar__post">
-          <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+
+        <div class="bp-sidebar__post" *ngFor="let posting of sidebar_posts">
+          <div class="bp-sidebar__date">Posted on {{posting.posted_on | date}}</div>
           <div class="bp-sidebar__image">
-            <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+            <img src={{posting.image_small}} alt="angular-drawing">
           </div>
-          <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+          <div class="bp-sidebar__headline" (click)="data.getUniquePost(posting.id - 1, posting.title, posting.category)">{{posting.title}}</div>
           <div class="bp-sidebar__text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+            <p>{{posting.short_content}}</p>
           </div>
         </div>
-        <div class="bp-sidebar__post">
-          <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
-          <div class="bp-sidebar__image">
-            <img src="assets/images/bp-single-small.png" alt="angular-drawing">
-          </div>
-          <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
-          <div class="bp-sidebar__text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
-          </div>
-        </div>
+
       </div>
 
       <div class="bp-comments">
@@ -112,7 +104,7 @@
           <div class="bp-recent">
             <h3 class="bp-recent__title">Recent comments</h3>
             <div class="bp-recent__container">
-              <div class="bp-recent__block" *ngFor="let comment of commentsData$">
+              <div class="bp-recent__block" *ngFor="let comment of post_comments">
                 <div class="bp-recent__name">{{comment.name}}</div>
                 <div class="bp-recent__date">Commented on {{comment.date | date}}</div>
                 <div class="bp-recent__text">{{comment.comment}}</div>
@@ -124,27 +116,20 @@
     </div>
 
     <div class="bp-sidebar" *ngIf="!media_xs">
-      <div class="bp-sidebar__title">More posts</div>
-      <div class="bp-sidebar__post">
-        <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
+      <div class="bp-sidebar__title">Related posts</div>
+
+      <div class="bp-sidebar__post" *ngFor="let posting of sidebar_posts">
+        <div class="bp-sidebar__date">Posted on {{posting.posted_on | date}}</div>
         <div class="bp-sidebar__image">
-          <img src="assets/images/bp-single-small.png" alt="angular-drawing">
+          <img src={{posting.image_small}} alt="angular-drawing">
         </div>
-        <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
+        <div class="bp-sidebar__headline" (click)="data.getUniquePost(posting.id - 1, posting.title, posting.category)">{{posting.title}}</div>
         <div class="bp-sidebar__text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
+          <p>{{posting.short_content}}</p>
         </div>
       </div>
-      <div class="bp-sidebar__post">
-        <div class="bp-sidebar__date">Posted on Jun 15, 2018</div>
-        <div class="bp-sidebar__image">
-          <img src="assets/images/bp-single-small.png" alt="angular-drawing">
-        </div>
-        <a class="bp-sidebar__headline" href="#">How to build a website using Angular Framework</a>
-        <div class="bp-sidebar__text">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc. Pellentesque egestas, neque vel viverra rutrum, dui nisl suscipit risus.</p>
-        </div>
-      </div>
+
+
     </div>
   </div>
 

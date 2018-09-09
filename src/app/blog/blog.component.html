@@ -69,7 +69,7 @@
           <div class="bp-post__date">Posted on {{post.posted_on | date}}</div>
           <button class="bp-post__category" (click)="filterByCategory(post.category)">{{post.category}} Category</button>
         </div>
-        <h2 class="bp-post__title" (click)="data.getUniquePost(i, post.title)">
+        <h2 class="bp-post__title" (click)="data.getUniquePost(i, post.title, post.category)">
           {{post.title}}
         </h2>
         <div class="bp-post__text">

@@ -18,14 +18,16 @@ export class PostComponent implements OnInit, AfterViewChecked {
   public state: string;
   public media_xs: boolean = false;
   public highlighted: boolean = false;
-  public current_post: Array<Object> = [];
-  public post_comments: Array<Object> = [];
   public send_comment: Object = {};
 
   public action: boolean = false;
 
+  public current_post: Array<Object> = [];
+  public post_comments: Array<Object> = [];
+  public sidebar_posts: Array<Object> = [];
+
   public postsData$: any;
-  public commentsData$: any;
+
 
   constructor( 
     public data: GeneralService, 
@@ -36,21 +38,18 @@ export class PostComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.data.current_post.subscribe(state => this.current_post = state);
     this.data.current_comments.subscribe(state => this.post_comments = state);
-    this.getActivePost();
+    this.data.current_sidebar_posts.subscribe(state => this.sidebar_posts = state);
+    this.postsData$ = this.current_post;
 
     this.checkWindowSize();
     this.data.resizeMenuLocation();
     this.data.navigationStateOnScroll();
     this.data.current_state.subscribe(state => this.state = state);
+
   }
 
   ngAfterViewChecked() {
     this.highlightSyntax();
-  }
-
-  getActivePost() {
-    this.postsData$ = this.current_post;
-    this.commentsData$ = this.post_comments;
   }
 
   highlightSyntax() {

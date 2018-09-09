@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 
@@ -12,7 +12,6 @@ export class GeneralService {
   public nav_scroll_state: string;
 
   private postsData$: any;
-  private postComments$: any;
 
   burger_state = new BehaviorSubject<string>('false');
   current_state = this.burger_state.asObservable();
@@ -20,11 +19,17 @@ export class GeneralService {
   post_state = new BehaviorSubject([]);
   current_post = this.post_state.asObservable();
 
-
   comments_state = new BehaviorSubject([]);
   current_comments = this.comments_state.asObservable();
 
-  constructor(private router: Router, private http: HttpClient) { }
+  sidebar_posts_state = new BehaviorSubject([]);
+  current_sidebar_posts = this.sidebar_posts_state.asObservable();
+
+  constructor(
+    private router: Router, 
+    private http: HttpClient,
+    private route: ActivatedRoute 
+  ) {}
 
   changeBurgerState(state: string) {
     this.burger_state.next(state);
@@ -74,16 +79,20 @@ export class GeneralService {
     }, 1500);
   }
 
-  getUniquePost($index, $title) {
-    
+  getUniquePost($index, $title, $category) {
+
+    console.log($index, $title, $category);
+
     $index = $index + 1;
     $title = $title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
 
-    this.postsData$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index});
+    this.postsData$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index, 'category': $category});
     this.postsData$.subscribe(response => {
       this.post_state.next(response.post);
       this.comments_state.next(response.comments); 
-      this.router.navigateByUrl(`blog/${$title}/?post=${$index}`);
+      this.sidebar_posts_state.next(response.sidebarPosts);
+
+      this.router.navigateByUrl(`blog/${$title}/?post=${$index}&cat=${$category}`);
     }); 
   }
 }

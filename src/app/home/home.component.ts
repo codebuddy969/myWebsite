@@ -15,13 +15,14 @@ export class HomeComponent implements OnInit {
   public post_data$: any;
   public comments_data$: any;
   public post_exist: boolean = false;
+  private post_params: Array<string> = [];
 
   constructor(
     public data: GeneralService, 
     private router: Router,
     private http: HttpClient,
     private route: ActivatedRoute
-    ) {}
+  ) {}
 
   ngOnInit() {
     this.redirectToPost();
@@ -36,14 +37,16 @@ export class HomeComponent implements OnInit {
 
         this.post_exist = true;
         let $index = params['post'];
+        let $category = params['cat']
 
-        this.post_data$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index});
+        this.post_data$ = this.http.post("http://laravel/external/unique-post", {'post_id': $index,'category': $category});
         this.post_data$.subscribe(response => {
           this.data.post_state.next(response.post);
-          this.data.comments_state.next(response.comments);   
+          this.data.comments_state.next(response.comments);  
+          this.data.sidebar_posts_state.next(response.sidebarPosts);
           
           let $title =  response.post[0].title.toLowerCase().replace(/[^A-Za-z0-9]/gi,'_');
-          this.router.navigateByUrl(`blog/${$title}/?post=${$index}`);
+          this.router.navigateByUrl(`blog/${$title}/?post=${$index}&cat=${$category}`);
         });
       }
     });

@@ -44,6 +44,7 @@
             font-size: 22px;
             margin-top: 20px;
             line-height: 30px;
+            cursor: pointer;
         }
         &__text {
             font-size: 15px;
@@ -52,6 +53,7 @@
         }
     }
     &container {
+        width: 100%;
         max-width: 1330px;
     }
     &heading {
@@ -76,6 +78,7 @@
         }
     }
     &image {
+        width: 100%;
         margin-top: 50px;
         overflow: hidden;
         display: flex;
@@ -198,6 +201,9 @@
             margin-right: 0;
             padding-left: 15px;
             padding-right: 15px;
+            &__title {
+                font-size: set-vw(20,30);
+            }
             &__image {
                 height: auto;
             }
@@ -245,9 +251,6 @@
     }
     @media screen and (max-width: $break-md) {
         &sidebar {
-            &__title {
-                font-size: set-vw(20,30);
-            }
             &__headline {
                 font-size: set-vw(16,22);
                 line-height: set-vw(18,30);
