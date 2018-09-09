@@ -15,10 +15,13 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { SocialsComponent } from './shared/socials/socials.component';
 import { DrawerDirective } from './shared/directives/drawer.directive';
-import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { BlogComponent } from './blog/blog.component';
 import { PostComponent } from './blog/post/post.component';
 import { PopupComponent } from './shared/popup/popup.component';
+
+import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { GeneralService } from './shared/services/general.service';
+import { PopupService } from './shared/services/popup.service';
 import { HighlightService } from './shared/services/highlight.service';
 
 import { ParticleEffectButtonModule } from "angular-particle-effect-button";
@@ -85,6 +88,8 @@ export const routes: Routes = [
       useClass: AuthInterceptor,
       multi: true
     },
+    GeneralService,
+    PopupService,
     HighlightService
   ],
   bootstrap: [AppComponent]

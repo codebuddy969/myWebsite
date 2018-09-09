@@ -14,7 +14,7 @@ export class ContactComponent implements OnInit {
 
   public submitForm: any;
   public state: string;
-  public model: Object = {};
+  public model: any = {};
   public action: boolean = false;
 
   constructor(

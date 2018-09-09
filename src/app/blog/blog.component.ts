@@ -18,9 +18,10 @@ export class BlogComponent implements OnInit {
 
   postsData$: any;
 
+  public p: number = 1;
   public state: string;
-  private model: Object = {};
-  private search_model: Object = {};
+  public model: any = {};
+  public search_model: any = {};
   public action: boolean = false;
 
   constructor( 

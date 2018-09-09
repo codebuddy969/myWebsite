@@ -10,6 +10,7 @@ import { GeneralService } from "../shared/services/general.service";
 export class AboutComponent implements OnInit {
 
   public state: string;
+  public hidden: boolean;
 
   constructor( public data: GeneralService ) { }
 

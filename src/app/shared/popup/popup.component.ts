@@ -6,10 +6,10 @@ import { PopupService } from "../services/popup.service";
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss']
 })
-@Directive({selector: 'button[counting]'})
+
 export class PopupComponent implements OnInit {
 
-  @Input() action_value: boolean;
+  @Input() action_value: boolean = false;
   @Output() returnEvent = new EventEmitter<boolean>(true);
 
   public popup_message: string;

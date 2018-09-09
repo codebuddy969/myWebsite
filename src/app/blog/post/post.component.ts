@@ -18,13 +18,13 @@ export class PostComponent implements OnInit, AfterViewChecked {
   public state: string;
   public media_xs: boolean = false;
   public highlighted: boolean = false;
-  public send_comment: Object = {};
+  public send_comment: any = {};
 
   public action: boolean = false;
 
-  public current_post: Array<Object> = [];
-  public post_comments: Array<Object> = [];
-  public sidebar_posts: Array<Object> = [];
+  public current_post: Array<any> = [];
+  public post_comments: Array<any> = [];
+  public sidebar_posts: Array<any> = [];
 
   public postsData$: any;
 
