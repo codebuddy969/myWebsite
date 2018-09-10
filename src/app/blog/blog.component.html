@@ -29,7 +29,7 @@
     <div class="bp-header__info">
       <h1 class="bp-header__title">Web Developer Notes</h1>
       <div class="bp-header__text">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi, rerum voluptas soluta enim adipisci earum, nobis iusto deserunt exercitationem dolores natus facilis a nihil molestias illum non minima saepe atque.</p>
+        <p>The best and worst thing about being a web developer is that the web is constantly changing, means that web developers must always be proactive in learning new languages and techniques. This blog is my collection of useful snippets and patterns which I discovered throughout my career as a web developer. </p>
       </div>
 
       <form class="bp-subscribe" (ngSubmit)="subscribeForm.form.valid && onSubmit()" #subscribeForm="ngForm" novalidate>
@@ -61,7 +61,7 @@
   <div class="bp-container">
     <div class="bp-container__posts">
 
-      <div class="bp-post" *ngFor="let post of postsData$ | async | paginate: { itemsPerPage: 4, currentPage: p }; index as i;">
+      <div class="bp-post" [class.active]="post.title[0]" *ngFor="let post of postsData$ | async | paginate: { itemsPerPage: 4, currentPage: p }; index as i;">
         <div class="bp-post__image">
           <img src={{post.image_small}} alt="blog-image">
         </div>
@@ -100,16 +100,10 @@
       </div>
       <div class="bp-categories">
         <div class="bp-categories__title">Posts by Category</div>
-        <div class="bp-categories__post">
-          <a class="bp-categories__headline" href="#">Posts related to Angular Framework</a>
+        <div class="bp-categories__post" *ngFor="let post of sidebarData$ | async; index as i;">
+          <button class="bp-categories__headline" (click)="filterByCategory(post.category)">Posts related to {{post.category}} Framework</button>
           <div class="bp-categories__text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc.</p>
-          </div>
-        </div>
-        <div class="bp-categories__post">
-          <a class="bp-categories__headline" href="#">Posts related to Angular Framework</a>
-          <div class="bp-categories__text">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet mollis nunc.</p>
+            <p>{{post.category_descr}}</p>
           </div>
         </div>
       </div>

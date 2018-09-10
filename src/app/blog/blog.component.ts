@@ -17,12 +17,14 @@ export class BlogComponent implements OnInit {
   public searchForm: any;
 
   postsData$: any;
+  sidebarData$: any;
 
   public p: number = 1;
   public state: string;
   public model: any = {};
   public search_model: any = {};
   public action: boolean = false;
+  public posts_exist: boolean = false;
 
   constructor( 
     public data: GeneralService, 
@@ -36,6 +38,7 @@ export class BlogComponent implements OnInit {
     this.data.current_state.subscribe(state => this.state = state);
 
     this.getPosts();
+    this.getCategories();
   }
 
   checkModal($event: any): void {
@@ -44,6 +47,10 @@ export class BlogComponent implements OnInit {
 
   getPosts(): void {
     this.postsData$ = this.http.get(`${this.data.SITE_PATH}/external/posts`);
+  }
+
+  getCategories(): void {
+    this.sidebarData$ = this.http.get(`${this.data.SITE_PATH}/external/sidebar-posts`);
   }
 
   onSearch(): void {

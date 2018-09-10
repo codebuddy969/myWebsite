@@ -107,6 +107,7 @@
         margin-bottom: 80px;
         padding-left: 15px;
         padding-right: 15px;
+        display: none;
         &__image {
             overflow: hidden;
             border-radius: 13px;
@@ -141,6 +142,16 @@
         }
         &__text {
             margin-top: 20px;
+        }
+        &.active {
+            opacity: 0;
+            display: block;
+            animation: fadein 2s;
+            animation-fill-mode: forwards;
+            @keyframes fadein {
+                from { opacity: 0; }
+                to   { opacity: 1; }
+            }
         }
     }
     &search {
@@ -183,7 +194,10 @@
             border-left: 2px solid #FCA92C;
         }
         &__headline {
+            cursor: pointer;
+            text-align: left;
             text-transform: uppercase;
+            background-color: transparent;
         }
         &__text {
             font-size: 16px;
